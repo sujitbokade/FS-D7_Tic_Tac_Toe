@@ -115,12 +115,23 @@ public class TicTacToe {
         createBoard(board);
         chooseLetter();
         showBoard(board);
-        while (true) {
-            System.out.println("Your Turn,Choose in between 1 to 9");
+        while (board[position]!=' ') {
+            System.out.println("Your Turn,(1 to 9)");
             int playerposition = sc.nextInt();
+            if(board[playerposition]!=' '){
+                System.out.println(playerposition+"is Invalid Position");
+                System.out.println("Your Turn,(1 to 9):");
+                playerposition = sc.nextInt();
+            }
             makeMove(board, player, playerposition);
+
             System.out.println("Computer Turn :");
             int computerposition = (int) (Math.random() * 10) % 10 + 1;
+            if(board[computerposition]!=' '){
+                System.out.println(computerposition+"is Invalid Podition");
+                System.out.println("Computer Turn,(1 to 9):");
+                computerposition = (int) (Math.random() * 10) % 10 + 1;
+            }
             makeMove(board, computer, computerposition);
 
         }
