@@ -107,33 +107,49 @@ public class TicTacToe {
                 break;
         }
         showBoard(board);
+    }
+      static void checkmove(){
+          while (board[position]!=' ')
+          {
+              System.out.println("Your Turn,(1 to 9)");
+              int playerposition = sc.nextInt();
+              if(board[playerposition]!=' '){
+                  System.out.println(playerposition+"is Invalid Position");
+                  System.out.println("Your Turn,(1 to 9):");
+                  playerposition = sc.nextInt();
+              }
+              makeMove(board, player, playerposition);
 
+              System.out.println("Computer Turn :");
+              int computerposition = (int) (Math.random() * 10) % 10 + 1;
+              if(board[computerposition]!=' '){
+                  System.out.println(computerposition+"is Invalid Podition");
+                  System.out.println("Computer Turn,(1 to 9):");
+                  computerposition = (int) (Math.random() * 10) % 10 + 1;
+              }
+              makeMove(board, computer, computerposition);
 
+          }
+      }
+        static char toss(){
+        if((int)(Math.random()*10)%2==1){
+            System.out.println("Player will start the game");
+            return player;
+        }
+        else{
+            System.out.println("Computer will start the game");
+            return computer;
+        }
     }
 
     public static void main(String[] args) {
         createBoard(board);
         chooseLetter();
+        char currentPlayer=toss();
+        System.out.println(currentPlayer);
         showBoard(board);
-        while (board[position]!=' ') {
-            System.out.println("Your Turn,(1 to 9)");
-            int playerposition = sc.nextInt();
-            if(board[playerposition]!=' '){
-                System.out.println(playerposition+"is Invalid Position");
-                System.out.println("Your Turn,(1 to 9):");
-                playerposition = sc.nextInt();
-            }
-            makeMove(board, player, playerposition);
+        checkmove();
+        showBoard(board);
 
-            System.out.println("Computer Turn :");
-            int computerposition = (int) (Math.random() * 10) % 10 + 1;
-            if(board[computerposition]!=' '){
-                System.out.println(computerposition+"is Invalid Podition");
-                System.out.println("Computer Turn,(1 to 9):");
-                computerposition = (int) (Math.random() * 10) % 10 + 1;
-            }
-            makeMove(board, computer, computerposition);
-
-        }
     }
 }
